@@ -1,9 +1,10 @@
-package app;
+package attendance;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class Person {
+public class Person implements LectureListener{
     private String name;
     private List<Subject> subjects = new ArrayList<>();
     private List<Lecture> attendedLectures = new ArrayList<>();
@@ -33,6 +34,7 @@ public class Person {
             throw new IllegalStateException("Cannot have the same subject twice");
         }
         subjects.add(subject);
+        subject.addListener(this);
     }
 
     public void removeSubject(Subject subject) {
@@ -44,17 +46,29 @@ public class Person {
         subjects.remove(subject);
     }
 
+    public List<Subject> getSubjects() {
+        return List.copyOf(this.subjects);
+    }
+
     public void addLecture(Lecture lecture) {
         if (lecture == null) {
             throw new IllegalArgumentException("Lecture cannot be null");
         } else if (attendedLectures.contains(lecture)) {
             throw new IllegalStateException("Cannot attend the same lecture twice");
         } else if (!subjects.contains(lecture.getSubject())) {
-            throw new IllegalStateException("Attended lectures in subject one does not have do not count");
+            throw new IllegalStateException("Attended lectures in subjects one does not have do not count");
+        } else if (!lecture.getSubject().getLectures().contains(lecture)) {
+            throw new IllegalArgumentException("The subject does not have this lecture");
         }
         attendedLectures.add(lecture);
+        attendedLectures.sort(new LectureComparator());
     }
 
+    public void updateLecture(Lecture lecture) {
+        if (this.attendedLectures.contains(lecture)) {
+            removeLecture(lecture);
+        }
+    }
     
 
     public void removeLecture(Lecture lecture) {
@@ -75,6 +89,17 @@ public class Person {
             throw new IllegalStateException("Cannot get attendance from subject one is not enrolled in");
         }
         return attendedLectures.stream().filter((lecture) -> lecture.getSubject()==subject).toList();
+    }
+
+    public List<Lecture> getAttendedLectures(Semester semester) {
+        if (semester == null) {
+            throw new IllegalArgumentException("Semester cannot be null");
+        }
+        return attendedLectures.stream().filter((lecture) -> lecture.getSubject().getSemester()==semester).toList();
+    }
+
+    public List<Lecture> getAttendedLectures(Calendar start, Calendar end) {
+        return attendedLectures.stream().filter((lecture) -> lecture.getDate().after(start) && lecture.getDate().before(end)).toList();
     }
 
 }

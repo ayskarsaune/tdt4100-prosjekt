@@ -1,4 +1,4 @@
-package app;
+package attendance;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,6 +10,7 @@ public class Subject {
     private List<Lecture> lectures = new ArrayList<>();
     private List<Integer> daysOfWeek = new ArrayList<>();
     private Semester semester;
+    private List<LectureListener> listeners = new ArrayList<>();
 
     public Subject(String name, String code, List<Integer> daysOfWeek, Semester semester) {
         setName(name);
@@ -22,7 +23,6 @@ public class Subject {
             for (int j = 0; j < this.daysOfWeek.size();j++) {
                 Calendar date = Calendar.getInstance();
                 date.setWeekDate(semester.getYear(), semester.getStartWeek()+i, daysOfWeek.get(j)+1);
-                System.out.println();
                 lectures.add(new Lecture(date,this));
             }
         }
@@ -55,7 +55,7 @@ public class Subject {
     }
 
     public void setDaysOfWeek(List<Integer> daysOfWeek) {
-        //TODO: Sjekk at det ikke er duplikate dager
+        //TODO: Sjekk at det ikke er duplikate dager, kanskje også slette funksjonen og legge til i konstruktør siden det ikke brukes på noe annet punkt
         if (daysOfWeek.isEmpty() || daysOfWeek == null) {
             throw new IllegalArgumentException("Subject cannot have no days of lectures");
         } else if (daysOfWeek.stream().anyMatch((day) -> day > 7 || day < 1)) {
@@ -79,6 +79,30 @@ public class Subject {
         return List.copyOf(this.lectures);
     }
 
+    public void addLecture(int week, int day) {
+        if (day > 7 || day < 1) {
+            throw new IllegalArgumentException("Day of week must be between 1 and 7");
+        } else if (week < this.semester.getStartWeek() || week > this.semester.getEndWeek()) {
+            throw new IllegalArgumentException("Week must be in semester");
+        }
+        Calendar date = Calendar.getInstance();
+        date.setWeekDate(semester.getYear(), week, day+1);
+        lectures.add(new Lecture(date,this));
+        lectures.sort(new LectureComparator());
+    }
+
+    public void removeLecture(Lecture lecture) {
+        if (lecture == null) {
+            throw new IllegalArgumentException("Cannot remove lecture if it is null");
+        } else if (!this.lectures.contains(lecture)) {
+            throw new IllegalStateException("Cannot remove lecture that this subject does not have");
+        }
+        this.lectures.remove(lecture);
+        for (LectureListener listener : this.listeners) {
+            listener.updateLecture(lecture);
+        }
+    }
+
     public Lecture getLecture(int index) {
         return this.lectures.get(index);
     }
@@ -90,10 +114,28 @@ public class Subject {
         return this.lectures.stream().filter((lecture) -> (lecture.getDate().get(Calendar.WEEK_OF_YEAR))==week).toList();
     }
 
+    public void addListener(LectureListener listener) {
+        if (listener == null) {
+            throw new IllegalArgumentException("Listener cannot be null");
+        } else if (this.listeners.contains(listener)) {
+            throw new IllegalStateException("Listener is already added");
+        }
+        this.listeners.add(listener);
+    }
+    public void removeListener(LectureListener listener) {
+        if (listener == null) {
+            throw new IllegalArgumentException("Listener cannot be null");
+        } else if (!this.listeners.contains(listener)) {
+            throw new IllegalStateException("Cannot remove as it is not listener");
+        }
+        this.listeners.remove(listener);
+    }
+
     public static void main(String[] args) {
         Semester v2026 = new Semester(2, 22, 2026);
+        Semester v2025 = new Semester(2, 22, 2025);
         Subject matte = new Subject("Matte 3", "TMA4422", List.of(2,4), v2026);
-        Subject objekt = new Subject("Objektorientert Programmering", "TDT4100", List.of(2,5), v2026);
+        Subject objekt = new Subject("Objektorientert Programmering", "TDT4100", List.of(2,5), v2025);
         
 
 
@@ -111,6 +153,10 @@ public class Subject {
         person.addLecture(matte.getWeekLectures(7).getFirst());
         person.addLecture(objekt.getWeekLectures(7).getLast());
         System.out.println(person.getAttendedLectures());
+        System.out.println(person.getAttendedLectures(v2026));
         System.out.println(person.getAttendedLectures(matte));
+
+
+        //TODO: Fillagring og lesing, faktisk lære JavaFX
     }
 }
