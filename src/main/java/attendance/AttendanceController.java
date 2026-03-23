@@ -42,8 +42,6 @@ public class AttendanceController {
 
     @FXML
     private void handleRegister(Event event) throws IOException {
-        Logic hey = Logic.getInstance();
-        hey.setPerson(new Person("atre"));
         changeScene(event, "Register.fxml");
 
     }

@@ -146,15 +146,32 @@ public class Subject {
 
         System.out.println(matte.getWeekLectures(7));
 
-
+        PersonContainer info = PersonContainer.getInstance();
+        List<Person> people = info.getPeople();
+        List<Lecture> lectures = info.getWeekLectures(7, info.getSemester());
+        //System.out.println(lectures);
         Person person = new Person("Angelica");
         person.addSubject(matte);
         person.addSubject(objekt);
         person.addLecture(matte.getWeekLectures(7).getFirst());
         person.addLecture(objekt.getWeekLectures(7).getLast());
-        System.out.println(person.getAttendedLectures());
+        /* System.out.println(person.getAttendedLectures());
         System.out.println(person.getAttendedLectures(v2026));
         System.out.println(person.getAttendedLectures(matte));
+ */
+
+        Calendar startOfWeek = Calendar.getInstance();
+        startOfWeek.setWeekDate(info.getSemester().getYear(),7,Calendar.MONDAY);
+
+        Calendar endOfWeek = Calendar.getInstance();
+        endOfWeek.setWeekDate(info.getSemester().getYear(),8,Calendar.SUNDAY);
+
+        System.out.println(person.getTotalLectures());
+        System.out.println(person.getTotaLectures(startOfWeek, endOfWeek));
+        System.out.println(startOfWeek);
+        System.out.println(endOfWeek);
+        System.out.println(person.getTotalLectures().stream().filter((lecture) -> (lecture.getDate().after(startOfWeek) && lecture.getDate().before(endOfWeek))).toList());
+        System.out.println(person.getTotalLectures().stream().filter((lecture) -> (lecture.getDate().after(startOfWeek))).filter((lecture) -> lecture.getDate().before(endOfWeek)).toList());
 
 
         //TODO: Fillagring og lesing, faktisk lære JavaFX

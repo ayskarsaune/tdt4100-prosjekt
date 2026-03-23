@@ -102,4 +102,16 @@ public class Person implements LectureListener{
         return attendedLectures.stream().filter((lecture) -> lecture.getDate().after(start) && lecture.getDate().before(end)).toList();
     }
 
+    public List<Lecture> getTotalLectures() {
+        return subjects.stream().flatMap(subject -> subject.getLectures().stream()).toList();
+    }
+
+    public List<Lecture> getTotalLectures(Subject subject) {
+        return subject.getLectures();
+    }
+
+    public List<Lecture> getTotaLectures(Calendar start, Calendar end) {
+        return getTotalLectures().stream().filter((lecture) -> lecture.getDate().after(start) && lecture.getDate().before(end)).toList();
+    }
+
 }
