@@ -110,7 +110,7 @@ public class Person implements LectureListener{
         return subject.getLectures();
     }
 
-    public List<Lecture> getTotaLectures(Calendar start, Calendar end) {
+    public List<Lecture> getTotalLectures(Calendar start, Calendar end) {
         return getTotalLectures().stream().filter((lecture) -> lecture.getDate().after(start) && lecture.getDate().before(end)).toList();
     }
 

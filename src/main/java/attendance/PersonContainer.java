@@ -1,16 +1,28 @@
 package attendance;
 
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 
 public final class PersonContainer {
     private List<Person> people = new ArrayList<>();
     private final static PersonContainer INSTANCE = new PersonContainer();
     private Semester v2026 = new Semester(2, 22, 2026);
+    private List<Semester> semesters = new ArrayList<>();
+    private List<Subject> subjects = new ArrayList<>();
     
     private PersonContainer() {
-        people.add(new Person("Angelica"));
+        /* people.add(new Person("Angelica"));
         people.add(new Person("Nikolai"));
         people.add(new Person("Sofus"));
         people.add(new Person("Kristoffer"));
@@ -37,7 +49,7 @@ public final class PersonContainer {
                 person.addSubject(subject);
             }
         }
-        people.getLast().removeSubject(ade);
+        people.getLast().removeSubject(ade); */
     }
     
     public static PersonContainer  getInstance() {
@@ -69,8 +81,101 @@ public final class PersonContainer {
         Calendar endOfWeek = Calendar.getInstance();
         endOfWeek.setWeekDate(semester.getYear(),week+1,Calendar.SUNDAY);
         
-        return people.stream().flatMap(person -> person.getTotaLectures(startOfWeek, endOfWeek).stream()).distinct().sorted((o1,o2)->o1.getDate().compareTo(o2.getDate())).toList();
+        return people.stream().flatMap(person -> person.getTotalLectures(startOfWeek, endOfWeek).stream()).distinct().sorted((o1,o2)->o1.getDate().compareTo(o2.getDate())).toList();
 
+    }
+
+    public void writeToFile(String filePath) {
+        File file = new File(filePath);
+        
+        try  {
+            FileWriter output = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(output);
+            List<Lecture> lectures = people.stream().flatMap(p -> p.getTotalLectures().stream()).distinct().toList();
+            for (Lecture lecture : lectures) {
+                String[] lines = new String[8];
+                lines[0] = lecture.getSubject().getCode();
+                lines[1] = lecture.getSubject().getName();
+                lines[2] = Long.toString(lecture.getDate().getTimeInMillis());
+                lines[3] = Integer.toString(lecture.getSubject().getSemester().getStartWeek());
+                lines[4] = Integer.toString(lecture.getSubject().getSemester().getEndWeek());
+                lines[5] = Integer.toString(lecture.getSubject().getSemester().getYear());
+                lines[6] = people.stream().filter(p -> p.getAttendedLectures().contains(lecture)).map(p -> p.getName()).collect(Collectors.joining(";"));
+                lines[7] = people.stream().filter(p -> p.getTotalLectures().contains(lecture)).map(p -> p.getName()).collect(Collectors.joining(";"));
+
+                writer.writeNext(lines);
+            }
+                writer.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+    }
+    public void readFromFile(String filePath) {
+        try  {
+            this.people = new ArrayList<>();
+            this.semesters = new ArrayList<>();
+            this.subjects = new ArrayList<>();
+            FileReader input = new FileReader(filePath);
+            CSVReader reader = new CSVReader(input);
+
+            List<String[]> output = reader.readAll();
+
+            for (String[] strings : output) {
+                Semester semester = this.semesters.stream().filter(s -> (Integer.toString(s.getStartWeek()).equals(strings[3]) && 
+                                                        Integer.toString(s.getEndWeek()).equals(strings[4])) && 
+                                                        Integer.toString(s.getYear()).equals(strings[5]))
+                                                        .findAny()
+                                                        .orElse(new Semester(Integer.parseInt(strings[3]), Integer.parseInt(strings[4]), Integer.parseInt(strings[5])));
+                if (!this.semesters.contains(semester)) {
+                    this.semesters.add(semester);
+                }
+
+                Subject subject = this.subjects.stream().filter(s -> s.getCode().equals(strings[0]) && s.getSemester()==semester)
+                                                        .findAny()
+                                                        .orElse(new Subject(strings[1], strings[0], semester));
+                if (!this.subjects.contains(subject)) {
+                    this.subjects.add(subject);
+                }
+
+                Calendar date = Calendar.getInstance();
+                date.setTimeInMillis(Long.parseLong(strings[2]));
+                subject.addLecture(date);
+
+                String[] peopleData = strings[7].split("[;]");
+                for (String person : peopleData) {
+                    Person newPerson = people.stream().filter(p -> p.getName().equals(person)).findAny().orElse(new Person(person));
+                    if (!this.people.contains(newPerson)) {
+                        this.people.add(newPerson);
+                    }
+                    if (!newPerson.getSubjects().contains(subject)) {
+                        newPerson.addSubject(subject);
+                    }
+                    String[] attendedData = strings[6].split("[;]");
+                    if (List.of(attendedData).contains(newPerson.getName())) {
+                        newPerson.addLecture(subject.getLectures().getLast());
+                    }
+                    
+                }
+
+            }
+
+            
+
+
+
+
+
+            reader.close();;
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (CsvException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
     }
 
 

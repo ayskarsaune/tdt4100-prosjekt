@@ -28,6 +28,13 @@ public class Subject {
         }
     }
 
+    public Subject(String name, String code, Semester semester) {
+        setName(name);
+        setCode(code);
+        setSemester(semester);
+        
+    }
+
     public String getName() {
         return name;
     }
@@ -87,6 +94,10 @@ public class Subject {
         }
         Calendar date = Calendar.getInstance();
         date.setWeekDate(semester.getYear(), week, day+1);
+        lectures.add(new Lecture(date,this));
+        lectures.sort(new LectureComparator());
+    }
+    public void addLecture(Calendar date) {
         lectures.add(new Lecture(date,this));
         lectures.sort(new LectureComparator());
     }
@@ -167,7 +178,7 @@ public class Subject {
         endOfWeek.setWeekDate(info.getSemester().getYear(),8,Calendar.SUNDAY);
 
         System.out.println(person.getTotalLectures());
-        System.out.println(person.getTotaLectures(startOfWeek, endOfWeek));
+        System.out.println(person.getTotalLectures(startOfWeek, endOfWeek));
         System.out.println(startOfWeek);
         System.out.println(endOfWeek);
         System.out.println(person.getTotalLectures().stream().filter((lecture) -> (lecture.getDate().after(startOfWeek) && lecture.getDate().before(endOfWeek))).toList());

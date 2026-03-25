@@ -1,7 +1,15 @@
 package attendance;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
+import java.time.temporal.IsoFields;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import com.opencsv.CSVWriter;
@@ -21,12 +29,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class RegisterController {
+    private PersonContainer info = PersonContainer.getInstance();
+    private int currentWeek = LocalDate.now().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
 
     @FXML
     private TextField firstNumber, secondNumber, operator;
 
     @FXML
-    private Label result;
+    private Label result, weekDisplay;
 
     @FXML
     private VBox names;
@@ -42,15 +52,24 @@ public class RegisterController {
         changeScene(event, "App.fxml");
     }
 
+    public RegisterController() {
+       
+    }
+
     @FXML
     public void initialize() {
-        PersonContainer info = PersonContainer.getInstance();
+        setWeek(currentWeek);
+    }
+
+    private void setWeek(int week) {
         List<Person> people = info.getPeople();
+        weekDisplay.setText("Uke "+week);
+
         if (people.isEmpty()) {
             //TODO: Add "The file is currently empty, please start adding people and subjects or import from file"
         }
         GridPane grid = new GridPane(5,5);
-
+        names.getChildren().clear();
         for (Person person : people) {
                 Label name = new Label(person.getName());
                 name.setPrefHeight(30);
@@ -59,7 +78,8 @@ public class RegisterController {
         }
         
         
-        List<Lecture> lectures = info.getWeekLectures(7,info.getSemester());
+        List<Lecture> lectures = info.getWeekLectures(week,info.getSemester());
+        subjectNames.getChildren().clear();
         for (Lecture lecture : lectures) {
             Label label = new Label(lecture.getSubject().getCode());
             label.setPrefWidth(70);
@@ -90,10 +110,6 @@ public class RegisterController {
         } 
 
         main.add(grid,1,1);
-
-        
-        
-        
     }
 
 
@@ -105,11 +121,28 @@ public class RegisterController {
         stage.show();
     }
 
-    public void writeToFile(String filePath) {
-        File file = new File(filePath);
-        try {
-            CSVWriter writer = new CSVWriter(file);
-        }
-        
+    @FXML
+    private void handleSave(Event event) {
+        info.writeToFile("register.csv");
     }
+    @FXML
+    private void handleLoad(Event event) {
+        info.readFromFile("register.csv");
+        System.out.println(this.currentWeek);
+        setWeek(this.currentWeek);
+    }
+
+    @FXML
+    private void forward() {
+        this.currentWeek++;
+        setWeek(this.currentWeek);
+    }
+    
+    @FXML
+    private void backward() {
+        this.currentWeek--;
+        setWeek(this.currentWeek);
+    }
+
+    
 }
