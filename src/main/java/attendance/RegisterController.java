@@ -1,18 +1,9 @@
 package attendance;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZonedDateTime;
 import java.time.temporal.IsoFields;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-
-import com.opencsv.CSVWriter;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -31,9 +22,7 @@ import javafx.stage.Stage;
 public class RegisterController {
     private PersonContainer info = PersonContainer.getInstance();
     private int currentWeek = LocalDate.now().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
-
-    @FXML
-    private TextField firstNumber, secondNumber, operator;
+    private int currentYear = LocalDate.now().getYear();
 
     @FXML
     private Label result, weekDisplay;
@@ -48,8 +37,16 @@ public class RegisterController {
     private GridPane main;
 
     @FXML
+    private TextField semesterName;
+
+    @FXML
     private void handleBack(Event event) throws IOException {
         changeScene(event, "App.fxml");
+    }
+
+    @FXML
+    private void handleEdit(Event event) throws IOException {
+        changeScene(event, "Edit.fxml");
     }
 
     public RegisterController() {
@@ -58,10 +55,10 @@ public class RegisterController {
 
     @FXML
     public void initialize() {
-        setWeek(currentWeek);
+        setWeek(currentWeek, this.currentYear);
     }
 
-    private void setWeek(int week) {
+    private void setWeek(int week, int year) {
         List<Person> people = info.getPeople();
         weekDisplay.setText("Uke "+week);
 
@@ -78,7 +75,7 @@ public class RegisterController {
         }
         
         
-        List<Lecture> lectures = info.getWeekLectures(week,info.getSemester());
+        List<Lecture> lectures = info.getWeekLectures(week, year);
         subjectNames.getChildren().clear();
         for (Lecture lecture : lectures) {
             Label label = new Label(lecture.getSubject().getCode());
@@ -112,6 +109,8 @@ public class RegisterController {
         main.add(grid,1,1);
     }
 
+    
+
 
     private void changeScene(Event event, String filepath) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(filepath));
@@ -128,20 +127,19 @@ public class RegisterController {
     @FXML
     private void handleLoad(Event event) {
         info.readFromFile("register.csv");
-        System.out.println(this.currentWeek);
-        setWeek(this.currentWeek);
+        setWeek(this.currentWeek, this.currentYear);
     }
 
     @FXML
     private void forward() {
         this.currentWeek++;
-        setWeek(this.currentWeek);
+        setWeek(this.currentWeek, this.currentYear);
     }
     
     @FXML
     private void backward() {
         this.currentWeek--;
-        setWeek(this.currentWeek);
+        setWeek(this.currentWeek, this.currentYear);
     }
 
     
