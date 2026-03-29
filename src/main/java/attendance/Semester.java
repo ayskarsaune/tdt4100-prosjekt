@@ -2,7 +2,6 @@ package attendance;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class Semester {
@@ -85,6 +84,11 @@ public class Semester {
 
     public List<Subject> getSubjects() {
         return List.copyOf(this.subjects);
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 
     

@@ -17,7 +17,6 @@ public class Subject {
         setCode(code);
         setDaysOfWeek(daysOfWeek);
         setSemester(semester);
-        
 
         for (int i = 0; i < semester.getEndWeek()-semester.getStartWeek();i++) {
             for (int j = 0; j < this.daysOfWeek.size();j++) {

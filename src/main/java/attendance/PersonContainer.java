@@ -66,6 +66,19 @@ public final class PersonContainer {
         return List.copyOf(this.people);
     }
 
+    public void addSubject(Subject subject) {
+        if (subject == null) {
+            throw new IllegalArgumentException("Subject cannot be null");
+        } else if (subjects.contains(subject)) {
+            throw new IllegalArgumentException("Cannot add same subject twice");
+        }
+
+        this.subjects.add(subject);
+    }
+
+    public List<Subject> getSubjects() {
+        return List.copyOf(this.subjects);
+    }
     public List<Subject> getSubjects(Semester semester) {
         return getPeople().stream().flatMap(person -> person.getSubjects().stream()).filter(subject -> subject.getSemester()==semester).distinct().toList();
     }
@@ -123,7 +136,7 @@ public final class PersonContainer {
         try  {
             FileWriter output = new FileWriter(file);
             CSVWriter writer = new CSVWriter(output);
-            List<Lecture> lectures = people.stream().flatMap(p -> p.getTotalLectures().stream()).distinct().toList();
+            List<Lecture> lectures = subjects.stream().flatMap(p -> p.getLectures().stream()).toList();
             for (Lecture lecture : lectures) {
                 String[] lines = new String[9];
                 lines[0] = lecture.getSubject().getCode();
@@ -167,11 +180,12 @@ public final class PersonContainer {
                     this.semesters.add(semester);
                 }
 
-                Subject subject = semester.getSubjects().stream().filter(s -> s.getCode().equals(strings[0]))
+                Subject subject = this.subjects.stream().filter(s -> s.getCode().equals(strings[0]))
                                                         .findAny()
                                                         .orElse(new Subject(strings[1], strings[0], semester));
                 if (!this.subjects.contains(subject)) {
                     this.subjects.add(subject);
+                    System.out.println("fail");
                 }
 
                 Calendar date = Calendar.getInstance();
@@ -180,6 +194,9 @@ public final class PersonContainer {
 
                 String[] peopleData = strings[8].split("[;]");
                 for (String person : peopleData) {
+                    if (person.isBlank()) {
+                        break;
+                    }
                     Person newPerson = people.stream().filter(p -> p.getName().equals(person)).findAny().orElse(new Person(person));
                     if (!this.people.contains(newPerson)) {
                         this.people.add(newPerson);

@@ -114,4 +114,9 @@ public class Person implements LectureListener{
         return getTotalLectures().stream().filter((lecture) -> lecture.getDate().after(start) && lecture.getDate().before(end)).toList();
     }
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
 }
