@@ -61,6 +61,11 @@ public final class PersonContainer {
         //TODO: validering
         this.people.add(person);
     }
+
+    public void removePerson(Person person) {
+        //TODO: Validering
+        this.people.remove(person);
+    }
     
     public List<Person> getPeople() {
         return List.copyOf(this.people);
@@ -185,7 +190,6 @@ public final class PersonContainer {
                                                         .orElse(new Subject(strings[1], strings[0], semester));
                 if (!this.subjects.contains(subject)) {
                     this.subjects.add(subject);
-                    System.out.println("fail");
                 }
 
                 Calendar date = Calendar.getInstance();

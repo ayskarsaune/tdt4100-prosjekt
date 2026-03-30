@@ -43,7 +43,7 @@
 
 <VBox prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.RegisterController">
   <children>
-      <HBox prefHeight="44.0" prefWidth="640.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="640.0">
          <children>
             <Button fx:id="back" alignment="BOTTOM_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBack" text="&lt;-  Tilbake">
                <HBox.margin>
@@ -82,7 +82,7 @@
             </Button>
          </children>
       </HBox>
-      <GridPane fx:id="main" prefHeight="375.0" prefWidth="639.0" VBox.vgrow="ALWAYS">
+      <GridPane fx:id="main" alignment="CENTER" prefHeight="375.0" prefWidth="639.0" VBox.vgrow="ALWAYS">
         <columnConstraints>
           <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="102.9239273071289" />
           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />

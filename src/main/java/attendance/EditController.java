@@ -7,6 +7,7 @@ import java.time.temporal.IsoFields;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +26,7 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -37,10 +39,10 @@ public class EditController {
     private PersonContainer container = PersonContainer.getInstance();
 
     @FXML
-    private AnchorPane lectures, people;
+    private AnchorPane lectures;
 
     @FXML
-    private GridPane semesters,subjects;
+    private GridPane semesters,subjects, people;
 
     @FXML
     private TabPane categories;
@@ -49,13 +51,13 @@ public class EditController {
     private DatePicker semesterstart, semesterEnd;
 
     @FXML
-    private TextField semesterName, subjectCode, subjectName;
+    private TextField semesterName, subjectCode, subjectName, personName;
 
     @FXML
     private ChoiceBox<Semester> semesterSelector;
 
     @FXML
-    private MenuButton personSelector;
+    private MenuButton personSelector, subjectSelector;
 
     @FXML
     private HBox days;
@@ -70,29 +72,12 @@ public class EditController {
 
     @FXML
     private void initialize() {
-        List<Semester> semesterList = container.getSemesters();
-        for (int i = 0; i < semesterList.size();i++) {
-            Semester semester = semesterList.get(i);
-            semesters.add(new Label(semester.getName()),0,i+1);
-            semesters.add(new Label(Integer.toString(semester.getStartWeek())),1,i+1);
-            semesters.add(new Label(Integer.toString(semester.getEndWeek())),2,i+1);
-            semesters.add(new Label(Integer.toString(semester.getYear())),3,i+1);
-
-            Button button = new Button("Delete");
-            button.setOnAction((e) -> {container.removeSemester(semester);
-                                       System.out.println("hey");
-            });
-            semesters.add(button,5,i+1);
-        }
-        semesterstart.setEditable(false);
-        semesterEnd.setEditable(false);
+        showSemesters();
 
         ObservableList<Semester> observableList = FXCollections.observableArrayList(container.getSemesters());
         semesterSelector.setItems(observableList);
-        
 
         List<Subject> subjectList = container.getSubjects();
-        System.out.println(subjectList);
         for (int i = 0; i<subjectList.size();i++) {
             Subject subject = subjectList.get(i);
             subjects.add(new Label(subject.getCode()),0,i+1);
@@ -110,7 +95,45 @@ public class EditController {
             personSelector.getItems().add(custom);
         }
 
+
+        List<Person> personList = container.getPeople();
+        for (int i = 0; i<personList.size();i++) {
+            Person person = personList.get(i);
+            people.add(new Label(person.getName()),0,i+1);
+            people.add(new Label(person.getSubjects().stream().map(s -> s.getName()).collect(Collectors.joining(", "))),1,i+1);
+            
+            Button button = new Button("Slett person");
+            button.setOnAction((e) -> container.removePerson(person));
+            people.add(button,3,i+1);
+            
+        }
+
+        for (Subject subject : container.getSubjects()) {
+            CheckBox checkName = new CheckBox(subject.getCode());
+            CustomMenuItem custom = new CustomMenuItem(checkName, false);
+            subjectSelector.getItems().add(custom);
+        }
+
         
+    }
+
+    private void showSemesters() {
+        List<Semester> semesterList = container.getSemesters();
+        for (int i = 0; i < semesterList.size();i++) {
+            Semester semester = semesterList.get(i);
+            semesters.add(new Label(semester.getName()),0,i+1);
+            semesters.add(new Label(Integer.toString(semester.getStartWeek())),1,i+1);
+            semesters.add(new Label(Integer.toString(semester.getEndWeek())),2,i+1);
+            semesters.add(new Label(Integer.toString(semester.getYear())),3,i+1);
+
+            Button button = new Button("Delete");
+            button.setOnAction((e) -> {container.removeSemester(semester);
+                                       System.out.println("hey");
+            });
+            semesters.add(button,5,i+1);
+        }
+        semesterstart.setEditable(false);
+        semesterEnd.setEditable(false);
     }
 
     @FXML
@@ -157,6 +180,20 @@ public class EditController {
 
         Subject subject = new Subject(subjectName.getText(), subjectCode.getText(), daysOfWeek, semesterSelector.getValue());
         container.addSubject(subject);
+    }
+
+    @FXML
+    private void addPerson() {
+        Person person = new Person(personName.getText());
+        container.addPerson(person);
+        for (MenuItem checkbox : subjectSelector.getItems()) {
+            if (checkbox instanceof CustomMenuItem) {
+                CheckBox subject = (CheckBox)((CustomMenuItem)checkbox).getContent();
+                if (subject.isSelected()) {
+                    person.addSubject(container.getSubjects().stream().filter((s) -> s.getCode().equals(subject.getText())).findAny().orElseThrow(IllegalStateException::new));
+                }
+            }
+        }
     }
 
     private void changeScene(Event event, String filepath) throws IOException {
