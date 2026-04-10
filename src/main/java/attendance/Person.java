@@ -1,7 +1,7 @@
 package attendance;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class Person implements LectureListener{
@@ -98,20 +98,16 @@ public class Person implements LectureListener{
         return attendedLectures.stream().filter((lecture) -> lecture.getSubject().getSemester()==semester).toList();
     }
 
-    public List<Lecture> getAttendedLectures(Calendar start, Calendar end) {
-        return attendedLectures.stream().filter((lecture) -> lecture.getDate().after(start) && lecture.getDate().before(end)).toList();
+    public List<Lecture> getAttendedLectures(LocalDate start, LocalDate end) {
+        return attendedLectures.stream().filter((lecture) -> lecture.getDate().isAfter(start) && lecture.getDate().isBefore(end)).toList();
     }
 
     public List<Lecture> getTotalLectures() {
         return subjects.stream().flatMap(subject -> subject.getLectures().stream()).toList();
     }
 
-    public List<Lecture> getTotalLectures(Subject subject) {
-        return subject.getLectures();
-    }
-
-    public List<Lecture> getTotalLectures(Calendar start, Calendar end) {
-        return getTotalLectures().stream().filter((lecture) -> lecture.getDate().after(start) && lecture.getDate().before(end)).toList();
+    public List<Lecture> getTotalLectures(LocalDate start, LocalDate end) {
+        return getTotalLectures().stream().filter((lecture) -> lecture.getDate().isAfter(start) && lecture.getDate().isBefore(end)).toList();
     }
 
     @Override

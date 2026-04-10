@@ -102,6 +102,7 @@
                   <Insets />
                </GridPane.margin>
             </HBox>
+            <Label fx:id="empty" text="." GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
   </children>

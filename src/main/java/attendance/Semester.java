@@ -1,6 +1,8 @@
 package attendance;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.IsoFields;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,9 +83,30 @@ public class Semester {
         }
         subjects.add(subject);
     }
+    public void removeSubject(Subject subject) {
+        if (subject == null) {
+            throw new IllegalArgumentException("Subject cannot be null");
+        } else if (!subjects.contains(subject)) {
+            throw new IllegalStateException("Cannot remove a subject that isnt contained");
+        }
+        subjects.remove(subject);
+    }
 
     public List<Subject> getSubjects() {
         return List.copyOf(this.subjects);
+    }
+
+    public boolean contains(LocalDate date) {
+        LocalDate start = LocalDate.of(this.year, 1, 1)          // any date in the right year
+        .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, this.startWeek)
+        .with(DayOfWeek.MONDAY);
+    
+        LocalDate end = LocalDate.of(this.year, 1, 1)          // any date in the right year
+        .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, this.endWeek)
+        .with(DayOfWeek.SUNDAY);
+
+        
+        return (date.isAfter(start) && date.isBefore(end)) || date.equals(end) || date.equals(start);
     }
 
     @Override

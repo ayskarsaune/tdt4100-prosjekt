@@ -48,7 +48,7 @@
                   <Font size="35.0" />
                </font>
             </Label>
-            <Button fx:id="stats1" alignment="CENTER" layoutX="257.0" layoutY="219.0" mnemonicParsing="false" onAction="#handleStats" prefHeight="31.0" prefWidth="125.0" text="Statistikk" />
+            <Button fx:id="stats1" alignment="CENTER" layoutX="257.0" layoutY="219.0" mnemonicParsing="false" onAction="#handleStats" prefHeight="31.0" prefWidth="125.0" text="Statistikk" visible="false" />
          </children>
       </AnchorPane>
   </children>

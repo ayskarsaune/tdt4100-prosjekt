@@ -163,7 +163,7 @@ public class EditController {
 
     @FXML
     private void setSemester() {
-       Semester semester = new Semester(semesterstart.getValue().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR), semesterEnd.getValue().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR),semesterstart.getValue().getYear(), semesterName.getText());
+       Semester semester = new Semester(semesterstart.getValue().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR)+1, semesterEnd.getValue().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR),semesterstart.getValue().getYear(), semesterName.getText());
        container.addSemester(semester);
     }
 
@@ -173,6 +173,7 @@ public class EditController {
         for (Node node : days.getChildren()) {
             if (node.getAccessibleRole().equals(AccessibleRole.TOGGLE_BUTTON)) {
                 if (((ToggleButton) node).isSelected()) {
+                    System.out.println(days.getChildren().indexOf(node)+1);
                     daysOfWeek.add(days.getChildren().indexOf(node)+1);
                 }
             }

@@ -1,28 +1,33 @@
 package attendance;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.IsoFields;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class Subject {
     private String name;
     private String code;
     private List<Lecture> lectures = new ArrayList<>();
-    private List<Integer> daysOfWeek = new ArrayList<>();
     private Semester semester;
     private List<LectureListener> listeners = new ArrayList<>();
 
     public Subject(String name, String code, List<Integer> daysOfWeek, Semester semester) {
         setName(name);
         setCode(code);
-        setDaysOfWeek(daysOfWeek);
         setSemester(semester);
 
+        //TODO: Sjekk at det ikke er duplikate dager, kanskje også slette funksjonen og legge til i konstruktør siden det ikke brukes på noe annet punkt
+        if (daysOfWeek.isEmpty() || daysOfWeek == null) {
+            throw new IllegalArgumentException("Subject cannot have no days of lectures");
+        } else if (daysOfWeek.stream().anyMatch((day) -> day > 7 || day < 1)) {
+            throw new IllegalArgumentException("Day of week must be between 1 and 7");
+        }
+
         for (int i = 0; i < semester.getEndWeek()-semester.getStartWeek();i++) {
-            for (int j = 0; j < this.daysOfWeek.size();j++) {
-                Calendar date = Calendar.getInstance();
-                date.setWeekDate(semester.getYear(), semester.getStartWeek()+i, daysOfWeek.get(j)+1);
-                lectures.add(new Lecture(date,this));
+            for (int j = 0; j < daysOfWeek.size();j++) {
+                addLecture(semester.getStartWeek()+i, daysOfWeek.get(j));
             }
         }
     }
@@ -56,19 +61,6 @@ public class Subject {
         this.code = code;
     }
 
-    public List<Integer> getDaysOfWeek() {
-        return List.copyOf(daysOfWeek);
-    }
-
-    public void setDaysOfWeek(List<Integer> daysOfWeek) {
-        //TODO: Sjekk at det ikke er duplikate dager, kanskje også slette funksjonen og legge til i konstruktør siden det ikke brukes på noe annet punkt
-        if (daysOfWeek.isEmpty() || daysOfWeek == null) {
-            throw new IllegalArgumentException("Subject cannot have no days of lectures");
-        } else if (daysOfWeek.stream().anyMatch((day) -> day > 7 || day < 1)) {
-            throw new IllegalArgumentException("Day of week must be between 1 and 7");
-        }
-        this.daysOfWeek = daysOfWeek;
-    }
 
     public Semester getSemester() {
         return semester;
@@ -78,6 +70,7 @@ public class Subject {
          if (semester == null) {
             throw new IllegalArgumentException("Semester cannot be null");
         }
+        //TODO: Fjerne alle forelesninger ikke i semesteret
         this.semester = semester;
     }
 
@@ -91,12 +84,13 @@ public class Subject {
         } else if (week < this.semester.getStartWeek() || week > this.semester.getEndWeek()) {
             throw new IllegalArgumentException("Week must be in semester");
         }
-        Calendar date = Calendar.getInstance();
-        date.setWeekDate(semester.getYear(), week, day+1);
+        LocalDate date = LocalDate.of(this.semester.getYear(), 1, 1)          // any date in the right year
+                .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, week)
+                .with(DayOfWeek.of(day));
         lectures.add(new Lecture(date,this));
         lectures.sort(new LectureComparator());
     }
-    public void addLecture(Calendar date) {
+    public void addLecture(LocalDate date) {
         lectures.add(new Lecture(date,this));
         lectures.sort(new LectureComparator());
     }
@@ -121,7 +115,7 @@ public class Subject {
         if (week < semester.getStartWeek() || week > semester.getEndWeek()) {
             throw new IllegalArgumentException("The subject is not this week");
         }
-        return this.lectures.stream().filter((lecture) -> (lecture.getDate().get(Calendar.WEEK_OF_YEAR))==week).toList();
+        return this.lectures.stream().filter((lecture) -> (lecture.getDate().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR))==week).toList();
     }
 
     public void addListener(LectureListener listener) {

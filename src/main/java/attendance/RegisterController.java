@@ -25,7 +25,7 @@ public class RegisterController {
     private int currentYear = LocalDate.now().getYear();
 
     @FXML
-    private Label result, weekDisplay;
+    private Label result, weekDisplay, empty;
 
     @FXML
     private VBox names;
@@ -63,7 +63,9 @@ public class RegisterController {
         weekDisplay.setText("Uke "+week);
 
         if (people.isEmpty()) {
-            //TODO: Add "The file is currently empty, please start adding people and subjects or import from file"
+            empty.setText("File is currently empty, start adding people and subjects or load from file");
+        } else {
+            empty.setText(null);
         }
         GridPane grid = new GridPane(5,5);
         names.getChildren().clear();
