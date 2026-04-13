@@ -18,7 +18,6 @@ public class Subject {
         setCode(code);
         setSemester(semester);
 
-        //TODO: Sjekk at det ikke er duplikate dager, kanskje også slette funksjonen og legge til i konstruktør siden det ikke brukes på noe annet punkt
         if (daysOfWeek.isEmpty() || daysOfWeek == null) {
             throw new IllegalArgumentException("Subject cannot have no days of lectures");
         } else if (daysOfWeek.stream().anyMatch((day) -> day > 7 || day < 1)) {
@@ -26,8 +25,8 @@ public class Subject {
         }
 
         for (int i = 0; i < semester.getEndWeek()-semester.getStartWeek();i++) {
-            for (int j = 0; j < daysOfWeek.size();j++) {
-                addLecture(semester.getStartWeek()+i, daysOfWeek.get(j));
+            for (int j = 0; j < daysOfWeek.stream().distinct().toList().size();j++) {
+                addLecture(semester.getStartWeek()+i, daysOfWeek.stream().distinct().toList().get(j));
             }
         }
     }
@@ -36,7 +35,6 @@ public class Subject {
         setName(name);
         setCode(code);
         setSemester(semester);
-        
     }
 
     public String getName() {
@@ -84,15 +82,29 @@ public class Subject {
         } else if (week < this.semester.getStartWeek() || week > this.semester.getEndWeek()) {
             throw new IllegalArgumentException("Week must be in semester");
         }
-        LocalDate date = LocalDate.of(this.semester.getYear(), 1, 1)          // any date in the right year
-                .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, week)
-                .with(DayOfWeek.of(day));
-        lectures.add(new Lecture(date,this));
+        LocalDate date = LocalDate.of(this.semester.getYear(),1,1).with(IsoFields.WEEK_OF_WEEK_BASED_YEAR,week).with(DayOfWeek.of(day));
+        new Lecture(date,this);
         lectures.sort(new LectureComparator());
     }
     public void addLecture(LocalDate date) {
-        lectures.add(new Lecture(date,this));
+        if (date == null) {
+            throw new IllegalArgumentException("Date cannot be null");
+        } else if (!this.semester.contains(date)) {
+            throw new IllegalArgumentException("Date cannot be outside of semester");
+        }
+        new Lecture(date,this);
         lectures.sort(new LectureComparator());
+    }
+
+    public void addLectureToSubject(Lecture lecture) {
+        if (lecture == null) {
+            throw new IllegalArgumentException("Cannot remove lecture if it is null");
+        } else if (this.lectures.contains(lecture)) {
+            throw new IllegalStateException("Cannot remove lecture that this subject does not have");
+        } else if (!semester.contains(lecture.getDate())) {
+            throw new IllegalArgumentException("Lecture of this date cannot have this subject");
+        }
+        this.lectures.add(lecture);
     }
 
     public void removeLecture(Lecture lecture) {
@@ -133,6 +145,11 @@ public class Subject {
             throw new IllegalStateException("Cannot remove as it is not listener");
         }
         this.listeners.remove(listener);
+    }
+
+    @Override
+    public String toString() {
+        return this.code;
     }
 
 }

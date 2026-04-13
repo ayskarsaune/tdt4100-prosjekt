@@ -30,7 +30,7 @@ public class PersonContainerTest {
         assertThrows(IllegalArgumentException.class, () -> container.addPerson(null));
         assertDoesNotThrow(() -> container.addPerson(person));
         assertEquals(List.of(person), container.getPeople());
-        assertThrows(IllegalArgumentException.class, () -> container.addPerson(person));
+        assertThrows(IllegalStateException.class, () -> container.addPerson(person));
         
     }
     @Test
@@ -39,7 +39,7 @@ public class PersonContainerTest {
         assertThrows(IllegalArgumentException.class, () -> container.removePerson(null));
         assertDoesNotThrow(() -> container.removePerson(person));
         assertEquals(List.of(), container.getPeople());
-        assertThrows(IllegalArgumentException.class, () -> container.removePerson(person));
+        assertThrows(IllegalStateException.class, () -> container.removePerson(person));
         
     }
 
@@ -49,12 +49,6 @@ public class PersonContainerTest {
         }
     }
 
-    @Test
-    public void testReadFromFile() {
-        assertDoesNotThrow(() -> container.readFromFile("registerTest.csv"));
-        checkPersonList(List.of("Angelica","Nikolai","Sofus","Kristoffer","Oliver","Oskar","Sander","Tony","Sven","Don"), container.getPeople());
-        
-    }
 
     @Test
     public void testWriteAndReadFile() {

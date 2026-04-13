@@ -73,11 +73,39 @@ public class EditController {
     @FXML
     private void initialize() {
         showSemesters();
+        semesterstart.setEditable(false);
+        semesterEnd.setEditable(false);
+        
+        showSubjects();
+        showPeople();
+        
+    }
+
+    private void showSemesters() {
+        List<Semester> semesterList = container.getSemesters();
+        semesters.getChildren().subList(5, semesters.getChildren().size()).clear();
+        for (int i = 0; i < semesterList.size();i++) {
+            Semester semester = semesterList.get(i);
+            semesters.add(new Label(semester.getName()),0,i+1);
+            semesters.add(new Label(Integer.toString(semester.getStartWeek())),1,i+1);
+            semesters.add(new Label(Integer.toString(semester.getEndWeek())),2,i+1);
+            semesters.add(new Label(Integer.toString(semester.getYear())),3,i+1);
+
+            Button button = new Button("Delete");
+            button.setOnAction((e) -> {container.removeSemester(semester);
+                showSemesters();
+            });
+            semesters.add(button,5,i+1);
+        }
+        
 
         ObservableList<Semester> observableList = FXCollections.observableArrayList(container.getSemesters());
         semesterSelector.setItems(observableList);
+    }
 
+    private void showSubjects() {
         List<Subject> subjectList = container.getSubjects();
+        subjects.getChildren().subList(3, subjects.getChildren().size()).clear();
         for (int i = 0; i<subjectList.size();i++) {
             Subject subject = subjectList.get(i);
             subjects.add(new Label(subject.getCode()),0,i+1);
@@ -86,9 +114,17 @@ public class EditController {
             Button button = new Button("Slett fag");
             button.setOnAction((e) -> container.removeSubject(subject));
             subjects.add(button,4,i+1);
-            
         }
-        
+
+        for (Subject subject : container.getSubjects()) {
+            CheckBox checkName = new CheckBox(subject.getCode());
+            CustomMenuItem custom = new CustomMenuItem(checkName, false);
+            subjectSelector.getItems().add(custom);
+        }
+    }
+
+    private void showPeople() {
+        personSelector.getItems().clear();
         for (Person person : container.getPeople()) {
             CheckBox checkName = new CheckBox(person.getName());
             CustomMenuItem custom = new CustomMenuItem(checkName, false);
@@ -97,6 +133,7 @@ public class EditController {
 
 
         List<Person> personList = container.getPeople();
+        people.getChildren().subList(2, people.getChildren().size()).clear();
         for (int i = 0; i<personList.size();i++) {
             Person person = personList.get(i);
             people.add(new Label(person.getName()),0,i+1);
@@ -107,33 +144,6 @@ public class EditController {
             people.add(button,3,i+1);
             
         }
-
-        for (Subject subject : container.getSubjects()) {
-            CheckBox checkName = new CheckBox(subject.getCode());
-            CustomMenuItem custom = new CustomMenuItem(checkName, false);
-            subjectSelector.getItems().add(custom);
-        }
-
-        
-    }
-
-    private void showSemesters() {
-        List<Semester> semesterList = container.getSemesters();
-        for (int i = 0; i < semesterList.size();i++) {
-            Semester semester = semesterList.get(i);
-            semesters.add(new Label(semester.getName()),0,i+1);
-            semesters.add(new Label(Integer.toString(semester.getStartWeek())),1,i+1);
-            semesters.add(new Label(Integer.toString(semester.getEndWeek())),2,i+1);
-            semesters.add(new Label(Integer.toString(semester.getYear())),3,i+1);
-
-            Button button = new Button("Delete");
-            button.setOnAction((e) -> {container.removeSemester(semester);
-                                       System.out.println("hey");
-            });
-            semesters.add(button,5,i+1);
-        }
-        semesterstart.setEditable(false);
-        semesterEnd.setEditable(false);
     }
 
     @FXML
@@ -165,6 +175,7 @@ public class EditController {
     private void setSemester() {
        Semester semester = new Semester(semesterstart.getValue().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR)+1, semesterEnd.getValue().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR),semesterstart.getValue().getYear(), semesterName.getText());
        container.addSemester(semester);
+       showSemesters();
     }
 
     @FXML
@@ -175,13 +186,31 @@ public class EditController {
                 if (((ToggleButton) node).isSelected()) {
                     System.out.println(days.getChildren().indexOf(node)+1);
                     daysOfWeek.add(days.getChildren().indexOf(node)+1);
+                    ((ToggleButton) node).setSelected(false);
                 }
             }
         }
 
         Subject subject = new Subject(subjectName.getText(), subjectCode.getText(), daysOfWeek, semesterSelector.getValue());
         container.addSubject(subject);
+
+        subjectName.setText(null);
+        subjectCode.setText(null);
+
+        for (MenuItem checkbox : personSelector.getItems()) {
+            if (checkbox instanceof CustomMenuItem) {
+                CheckBox person = (CheckBox)((CustomMenuItem)checkbox).getContent();
+                if (person.isSelected()) {
+                    Person selected = container.getPeople().stream().filter(p -> p.getName().equals(person.getText())).findAny().orElseThrow();
+                    selected.addSubject(subject);
+                }
+            }
+        }
+
+        showSubjects();
     }
+
+    
 
     @FXML
     private void addPerson() {

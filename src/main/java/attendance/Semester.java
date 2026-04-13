@@ -97,13 +97,10 @@ public class Semester {
     }
 
     public boolean contains(LocalDate date) {
-        LocalDate start = LocalDate.of(this.year, 1, 1)          // any date in the right year
-        .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, this.startWeek)
-        .with(DayOfWeek.MONDAY);
-    
-        LocalDate end = LocalDate.of(this.year, 1, 1)          // any date in the right year
-        .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, this.endWeek)
-        .with(DayOfWeek.SUNDAY);
+        LocalDate start = LocalDate.of(this.year,1,1).with(IsoFields.WEEK_OF_WEEK_BASED_YEAR,this.startWeek).with(DayOfWeek.MONDAY);
+
+        LocalDate end = LocalDate.of(this.year,1,1).with(IsoFields.WEEK_OF_WEEK_BASED_YEAR,this.endWeek+1).with(DayOfWeek.SUNDAY);
+
 
         
         return (date.isAfter(start) && date.isBefore(end)) || date.equals(end) || date.equals(start);

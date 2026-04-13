@@ -99,7 +99,7 @@ public class Person implements LectureListener{
     }
 
     public List<Lecture> getAttendedLectures(LocalDate start, LocalDate end) {
-        return attendedLectures.stream().filter((lecture) -> lecture.getDate().isAfter(start) && lecture.getDate().isBefore(end)).toList();
+        return attendedLectures.stream().filter((lecture) -> (lecture.getDate().isAfter(start) && lecture.getDate().isBefore(end)) || lecture.getDate().equals(start) || lecture.getDate().equals(end)).toList();
     }
 
     public List<Lecture> getTotalLectures() {
@@ -107,7 +107,7 @@ public class Person implements LectureListener{
     }
 
     public List<Lecture> getTotalLectures(LocalDate start, LocalDate end) {
-        return getTotalLectures().stream().filter((lecture) -> lecture.getDate().isAfter(start) && lecture.getDate().isBefore(end)).toList();
+        return getTotalLectures().stream().filter((lecture) -> (lecture.getDate().isAfter(start) && lecture.getDate().isBefore(end)) || lecture.getDate().equals(start) || lecture.getDate().equals(end)).toList();
     }
 
     @Override

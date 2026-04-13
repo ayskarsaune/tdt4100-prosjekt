@@ -23,8 +23,13 @@ public class PersonTest {
     public void testAddSubjects() {
         assertThrows(IllegalArgumentException.class, () -> person.addSubject(null));
         assertDoesNotThrow(() -> person.addSubject(subject));
+    }
 
-        
-
+    @Test
+    public void testRemoveSubjects() {
+        person.addSubject(subject);
+        assertThrows(IllegalArgumentException.class, () -> person.removeSubject(null));
+        assertDoesNotThrow(() -> person.removeSubject(subject));
+        assertThrows(IllegalStateException.class,() -> person.removeSubject(subject));
     }
 }

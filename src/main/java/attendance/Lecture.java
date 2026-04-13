@@ -9,6 +9,9 @@ public class Lecture {
     public Lecture(LocalDate date, Subject subject) {
         this.subject = subject;
         setDate(date);
+        if (!subject.getLectures().contains(this)) {
+            subject.addLectureToSubject(this);
+        }
     }
 
     public LocalDate getDate() {

@@ -93,6 +93,7 @@ public final class PersonContainer {
         for (Subject subject : semester.getSubjects()) {
             removeSubject(subject);
         }  
+        this.semesters.remove(semester);
     }
 
     public List<Semester> getSemesters() {
@@ -100,14 +101,9 @@ public final class PersonContainer {
     }
 
     public List<Lecture> getWeekLectures(int week, int year) {
-        LocalDate startOfWeek = LocalDate.of(year, 1, 1)          // any date in the right year
-        .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, week)
-        .with(DayOfWeek.SUNDAY);
+        LocalDate startOfWeek = LocalDate.of(year,1,1).with(IsoFields.WEEK_OF_WEEK_BASED_YEAR,week).with(DayOfWeek.MONDAY);
 
-        LocalDate endOfWeek = LocalDate.of(year, 1, 1)          // any date in the right year
-        .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, week+1)
-        .with(DayOfWeek.SUNDAY);
-        
+        LocalDate endOfWeek = LocalDate.of(year,1,1).with(IsoFields.WEEK_OF_WEEK_BASED_YEAR,week).with(DayOfWeek.SUNDAY);
 
         return people.stream().flatMap(person -> person.getTotalLectures(startOfWeek, endOfWeek).stream()).distinct().sorted(new LectureComparator()).toList();
         
@@ -174,9 +170,9 @@ public final class PersonContainer {
                     this.subjects.add(subject);
                 }
 
-                LocalDate date = LocalDate.of(Integer.parseInt(strings[6]), 1, 1)          
-                .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, Integer.parseInt(strings[2]))
-                .with(DayOfWeek.of(Integer.parseInt(strings[3])));
+                LocalDate date = LocalDate.of(Integer.parseInt(strings[6]),1,1)
+                                .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, Integer.parseInt(strings[2]))
+                                .with(DayOfWeek.of(Integer.parseInt(strings[3])));
                 
 
                 subject.addLecture(date);

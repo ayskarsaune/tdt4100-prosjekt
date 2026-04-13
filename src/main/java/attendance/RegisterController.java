@@ -5,12 +5,17 @@ import java.time.LocalDate;
 import java.time.temporal.IsoFields;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -20,7 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class RegisterController {
-    private PersonContainer info = PersonContainer.getInstance();
+    private PersonContainer container = PersonContainer.getInstance();
     private int currentWeek = LocalDate.now().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
     private int currentYear = LocalDate.now().getYear();
 
@@ -31,13 +36,20 @@ public class RegisterController {
     private VBox names;
 
     @FXML
-    private HBox subjectNames;
+    private HBox subjectNames, dates;
 
     @FXML
     private GridPane main;
 
     @FXML
     private TextField semesterName;
+
+    @FXML
+    private ChoiceBox<Subject> lectureSubject;
+
+    @FXML
+    private DatePicker lectureDate;
+
 
     @FXML
     private void handleBack(Event event) throws IOException {
@@ -59,7 +71,7 @@ public class RegisterController {
     }
 
     private void setWeek(int week, int year) {
-        List<Person> people = info.getPeople();
+        List<Person> people = container.getPeople();
         weekDisplay.setText("Uke "+week);
 
         if (people.isEmpty()) {
@@ -67,6 +79,11 @@ public class RegisterController {
         } else {
             empty.setText(null);
         }
+
+        if (main.getChildren().size() > 3) {
+            main.getChildren().remove(3);
+        }
+
         GridPane grid = new GridPane(5,5);
         names.getChildren().clear();
         for (Person person : people) {
@@ -77,38 +94,55 @@ public class RegisterController {
         }
         
         
-        List<Lecture> lectures = info.getWeekLectures(week, year);
+        List<Lecture> lectures = container.getWeekLectures(week, year);
         subjectNames.getChildren().clear();
+        dates.getChildren().clear();
         for (Lecture lecture : lectures) {
             Label label = new Label(lecture.getSubject().getCode());
             label.setPrefWidth(70);
             subjectNames.getChildren().add(label);
 
+            Label date = new Label(lecture.getDate().toString().substring(5));
+            date.setPrefWidth(80);
+            dates.getChildren().add(date);
+
             for (Person person : people) {
                 if (person.getSubjects().contains(lecture.getSubject())) {
-                ToggleButton button = new ToggleButton();
-                if (!person.getAttendedLectures().contains(lecture)) {
-                    button.setText("Ikke møtt");
-                } else {
-                    button.setText("Til stede");
-                    button.setSelected(true);
-                }
-                button.setPrefWidth(70);
-                button.setOnAction(e -> { if (button.isSelected()) {
-                                            button.setText("Til stede");
-                                            person.addLecture(lecture);
-                                        } else {
-                                            button.setText("Ikke møtt");
-                                            person.removeLecture(lecture);
-                                        }
-                                
-                                });
+                    ToggleButton button = new ToggleButton();
+                    if (!person.getAttendedLectures().contains(lecture)) {
+                        button.setText("Ikke møtt");
+                    } else {
+                        button.setText("Til stede");
+                        button.setSelected(true);
+                    }
+                    button.setPrefWidth(70);
+                    button.setOnAction(e -> { if (button.isSelected()) {
+                                                button.setText("Til stede");
+                                                person.addLecture(lecture);
+                                            } else {
+                                                button.setText("Ikke møtt");
+                                                person.removeLecture(lecture);
+                                            }
+                                    
+                                    });
             grid.add(button, lectures.indexOf(lecture),people.indexOf(person));
-            
-        }}
+        } else {
+            Label filler = new Label("");
+            filler.setPrefHeight(26);
+            grid.add(filler, lectures.indexOf(lecture),people.indexOf(person));
+        }
+    }
+        Button delete = new Button("Slett");
+        delete.setPrefWidth(70);
+        delete.setOnAction(e -> {
+            lecture.getSubject().removeLecture(lecture);
+            setWeek(currentWeek, currentYear);
+        });
+        grid.add(delete, lectures.indexOf(lecture), people.size());
         } 
-
         main.add(grid,1,1);
+        ObservableList<Subject> observableList = FXCollections.observableArrayList(container.getSubjects().stream().filter(s -> s.getSemester().contains(LocalDate.of(currentYear,1,1).with(IsoFields.WEEK_OF_WEEK_BASED_YEAR,(currentWeek)))).toList());
+        lectureSubject.setItems(observableList);
     }
 
     
@@ -124,24 +158,43 @@ public class RegisterController {
 
     @FXML
     private void handleSave(Event event) {
-        info.writeToFile("register.csv");
+        container.writeToFile("register.csv");
     }
     @FXML
     private void handleLoad(Event event) {
-        info.readFromFile("register.csv");
+        container.readFromFile("register.csv");
+        System.out.println(this.currentWeek);
         setWeek(this.currentWeek, this.currentYear);
     }
 
     @FXML
     private void forward() {
         this.currentWeek++;
+        if (this.currentWeek == 53) {
+            this.currentWeek = 1;
+            this.currentYear++;
+        }
         setWeek(this.currentWeek, this.currentYear);
     }
     
     @FXML
     private void backward() {
         this.currentWeek--;
+        if (this.currentWeek == 0) {
+            this.currentWeek = 52;
+            this.currentYear--;
+        }
         setWeek(this.currentWeek, this.currentYear);
+    }
+
+    @FXML
+    private void addLecture() {
+        if (lectureSubject.getValue() != null && lectureSubject.getValue().getSemester().contains(lectureDate.getValue())) {
+            lectureSubject.getValue().addLecture(lectureDate.getValue());
+            lectureSubject.setValue(null);
+            setWeek(currentWeek, currentYear);
+        }
+        
     }
 
     

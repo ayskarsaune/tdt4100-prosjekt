@@ -35,7 +35,7 @@ valgt de testene dere har? Har dere testet alle deler av koden? Hvis ikke, hvord
 har dere prioritert hvilke deler som testes og ikke? (Her er tanken at dere skal
 reflektere rundt egen bruk av tester)
 
-    > Har testet setters og getters i de ulike datalagrende klassende for å sørge for at informasjonen lagres riktig og at den valideres ordentlig, i tillegg til å teste fillagring og lesing.
+    > Har testet setters og getters i de ulike datalagrende klassende for å sørge for at informasjonen lagres riktig og at den valideres ordentlig, i tillegg til å teste fillagring og lesing. Hadde jeg hatt mer tid eller laget tester fra starten av hadde jeg nok laget noe bedre tester, ettersom de jeg har alle ble laget in a rush mot slutten av prosjektet
 
 ## KI Deklarasjon
 Det har blitt brukt ganske lite KI i utviklingen av dette programmet. Jeg har hovedsakelig brukt StackOverflow, w3Schools og geeksforgeeks og eventuelt andre sider som dukker opp. 
