@@ -49,7 +49,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.EditController">
+<VBox prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.EditController">
   <children>
       <HBox prefHeight="20.0" prefWidth="640.0">
          <children>

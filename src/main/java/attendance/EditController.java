@@ -230,7 +230,6 @@ public class EditController {
         Parent root = FXMLLoader.load(getClass().getResource(filepath));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        stage.setResizable(false);
         stage.setScene(scene);
         
         stage.show();

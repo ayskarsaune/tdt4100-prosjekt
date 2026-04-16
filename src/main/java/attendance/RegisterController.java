@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -99,11 +100,13 @@ public class RegisterController {
         dates.getChildren().clear();
         for (Lecture lecture : lectures) {
             Label label = new Label(lecture.getSubject().getCode());
-            label.setPrefWidth(70);
+            label.setPrefWidth(120);
+            label.setAlignment(Pos.CENTER);
             subjectNames.getChildren().add(label);
 
             Label date = new Label(lecture.getDate().toString().substring(5));
-            date.setPrefWidth(80);
+            date.setPrefWidth(120);
+            date.setAlignment(Pos.CENTER);
             dates.getChildren().add(date);
 
             for (Person person : people) {
@@ -115,7 +118,7 @@ public class RegisterController {
                         button.setText("Til stede");
                         button.setSelected(true);
                     }
-                    button.setPrefWidth(70);
+                    button.setPrefWidth(120);
                     button.setOnAction(e -> { if (button.isSelected()) {
                                                 button.setText("Til stede");
                                                 person.addLecture(lecture);
@@ -133,7 +136,7 @@ public class RegisterController {
         }
     }
         Button delete = new Button("Slett");
-        delete.setPrefWidth(70);
+        delete.setPrefWidth(120);
         delete.setOnAction(e -> {
             lecture.getSubject().removeLecture(lecture);
             setWeek(currentWeek, currentYear);
