@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.IsoFields;
+import java.time.temporal.TemporalField;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -119,17 +120,16 @@ public final class PersonContainer {
         try (FileWriter fileWriter = new FileWriter(filePath)) {
             List<Lecture> lectures = subjects.stream().flatMap(p -> p.getLectures().stream()).toList();
             for (Lecture lecture : lectures) {
-                String[] lines = new String[10];
+                String[] lines = new String[9];
                 lines[0] = lecture.getSubject().getCode();
                 lines[1] = lecture.getSubject().getName();
-                lines[2] = Integer.toString(lecture.getDate().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR));
-                lines[3] = Integer.toString(lecture.getDate().getDayOfWeek().getValue());
-                lines[4] = Integer.toString(lecture.getSubject().getSemester().getStartWeek());
-                lines[5] = Integer.toString(lecture.getSubject().getSemester().getEndWeek());
-                lines[6] = Integer.toString(lecture.getSubject().getSemester().getYear());
-                lines[7] = lecture.getSubject().getSemester().getName();
-                lines[8] = people.stream().filter(p -> p.getAttendedLectures().contains(lecture)).map(p -> p.getName()).collect(Collectors.joining(","));
-                lines[9] = people.stream().filter(p -> p.getTotalLectures().contains(lecture)).map(p -> p.getName()).collect(Collectors.joining(","));
+                lines[2] = Integer.toString(lecture.getDate().getDayOfYear());
+                lines[3] = Integer.toString(lecture.getSubject().getSemester().getStartWeek());
+                lines[4] = Integer.toString(lecture.getSubject().getSemester().getEndWeek());
+                lines[5] = Integer.toString(lecture.getSubject().getSemester().getYear());
+                lines[6] = lecture.getSubject().getSemester().getName();
+                lines[7] = people.stream().filter(p -> p.getAttendedLectures().contains(lecture)).map(p -> p.getName()).collect(Collectors.joining(","));
+                lines[8] = people.stream().filter(p -> p.getTotalLectures().contains(lecture)).map(p -> p.getName()).collect(Collectors.joining(","));
 
                 fileWriter.write(String.join(";", lines));
                 fileWriter.write("\n");
@@ -152,13 +152,13 @@ public final class PersonContainer {
                     continue;
                 }
                 String[] strings = line.split("[;]");
-                Semester semester = this.semesters.stream().filter(s -> (Integer.toString(s.getStartWeek()).equals(strings[4]) && 
-                                                        Integer.toString(s.getEndWeek()).equals(strings[5])) && 
-                                                        Integer.toString(s.getYear()).equals(strings[6]) &&
-                                                        s.getName().equals(strings[7])
+                Semester semester = this.semesters.stream().filter(s -> (Integer.toString(s.getStartWeek()).equals(strings[3]) && 
+                                                        Integer.toString(s.getEndWeek()).equals(strings[4])) && 
+                                                        Integer.toString(s.getYear()).equals(strings[5]) &&
+                                                        s.getName().equals(strings[6])
                                                     )
                                                         .findAny()
-                                                        .orElse(new Semester(Integer.parseInt(strings[4]), Integer.parseInt(strings[5]), Integer.parseInt(strings[6]),strings[7]));
+                                                        .orElse(new Semester(Integer.parseInt(strings[3]), Integer.parseInt(strings[4]), Integer.parseInt(strings[5]),strings[6]));
                 if (!this.semesters.contains(semester)) {
                     this.semesters.add(semester);
                 }
@@ -170,14 +170,12 @@ public final class PersonContainer {
                     this.subjects.add(subject);
                 }
 
-                LocalDate date = LocalDate.of(Integer.parseInt(strings[6]),1,1)
-                                .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, Integer.parseInt(strings[2]))
-                                .with(DayOfWeek.of(Integer.parseInt(strings[3])));
+                LocalDate date = LocalDate.ofYearDay(Integer.parseInt(strings[5]), Integer.parseInt(strings[2]));
                 
 
                 subject.addLecture(date);
 
-                String[] peopleData = strings[9].split("[,]");
+                String[] peopleData = strings[8].split("[,]");
                 for (String person : peopleData) {
                     if (person.isBlank()) {
                         break;
@@ -189,7 +187,7 @@ public final class PersonContainer {
                     if (!newPerson.getSubjects().contains(subject)) {
                         newPerson.addSubject(subject);
                     }
-                    String[] attendedData = strings[8].split("[,]");
+                    String[] attendedData = strings[7].split("[,]");
                     if (List.of(attendedData).contains(newPerson.getName())) {
                         newPerson.addLecture(subject.getLectures().getLast());
                     } 
