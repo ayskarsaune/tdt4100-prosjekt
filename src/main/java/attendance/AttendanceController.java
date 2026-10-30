@@ -28,7 +28,7 @@ public class AttendanceController {
     }
     @FXML
     private void handleStats(Event event) throws IOException {
-        changeScene(event, "Register.fxml");
+        changeScene(event, "Stats.fxml");
     }
 
     @FXML

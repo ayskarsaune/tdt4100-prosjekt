@@ -106,6 +106,13 @@ public class Person implements LectureListener{
         return subjects.stream().flatMap(subject -> subject.getLectures().stream()).toList();
     }
 
+    public List<Lecture> getTotalLectures(Semester semester) {
+        if (semester == null) {
+            throw new IllegalArgumentException("Semester cannot be null");
+        }
+        return getTotalLectures().stream().filter((lecture) -> lecture.getSubject().getSemester()==semester).toList();
+    }
+
     public List<Lecture> getTotalLectures(LocalDate start, LocalDate end) {
         return getTotalLectures().stream().filter((lecture) -> (lecture.getDate().isAfter(start) && lecture.getDate().isBefore(end)) || lecture.getDate().equals(start) || lecture.getDate().equals(end)).toList();
     }

@@ -24,15 +24,8 @@ TTT4203;ADE;82;1;21;2026;v2026;Angelica,Sofus,Oliver,Tony;Angelica,Nikolai,Sofus
 TTT4203;ADE;86;1;21;2026;v2026;Angelica,Nikolai,Kristoffer,Oskar,Tony,Sven;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
 TTT4203;ADE;100;1;21;2026;v2026;Angelica,Oliver,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
 TTT4203;ADE;103;1;21;2026;v2026;Nikolai,Sofus,Sander,Tony,Sven;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
-TTT4203;ADE;107;1;21;2026;v2026;Angelica,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
-TTT4203;ADE;110;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
-TTT4203;ADE;114;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
-TTT4203;ADE;117;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
-TTT4203;ADE;121;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
-TTT4203;ADE;124;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
-TTT4203;ADE;128;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
-TTT4203;ADE;131;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
-TTT4203;ADE;135;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
+TTT4203;ADE;107;1;21;2026;v2026;Angelica,Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
+TTT4203;ADE;110;1;21;2026;v2026;Angelica,Nikolai,Kristoffer,Oliver,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven
 TMA4422;Matte 3;6;1;21;2026;v2026;Angelica,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TMA4422;Matte 3;8;1;21;2026;v2026;Angelica,Sofus,Oliver,Sander,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TMA4422;Matte 3;13;1;21;2026;v2026;Angelica,Oskar,Sander,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
@@ -57,14 +50,7 @@ TMA4422;Matte 3;76;1;21;2026;v2026;Angelica,Nikolai,Sofus,Oliver,Oskar,Sander,Sv
 TMA4422;Matte 3;78;1;21;2026;v2026;Angelica,Sofus,Oskar,Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TMA4422;Matte 3;104;1;21;2026;v2026;Angelica,Sofus,Oskar,Sander,Tony,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TMA4422;Matte 3;106;1;21;2026;v2026;Angelica,Sofus,Sander,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TMA4422;Matte 3;111;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TMA4422;Matte 3;113;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TMA4422;Matte 3;118;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TMA4422;Matte 3;120;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TMA4422;Matte 3;125;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TMA4422;Matte 3;127;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TMA4422;Matte 3;132;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TMA4422;Matte 3;134;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
+TMA4422;Matte 3;111;1;21;2026;v2026;Angelica,Nikolai,Sofus,Oskar,Sander,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TDT4100;Objektorientert;6;1;21;2026;v2026;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Tony,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TDT4100;Objektorientert;9;1;21;2026;v2026;Angelica,Sofus,Sander,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TDT4100;Objektorientert;13;1;21;2026;v2026;Angelica,Oskar,Sander,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
@@ -89,15 +75,7 @@ TDT4100;Objektorientert;76;1;21;2026;v2026;Angelica,Sofus,Kristoffer,Oliver,Oska
 TDT4100;Objektorientert;82;1;21;2026;v2026;Sofus,Oliver,Sven;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TDT4100;Objektorientert;83;1;21;2026;v2026;Angelica,Sander,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TDT4100;Objektorientert;104;1;21;2026;v2026;Kristoffer,Oliver,Sven;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4100;Objektorientert;107;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4100;Objektorientert;111;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4100;Objektorientert;114;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4100;Objektorientert;118;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4100;Objektorientert;121;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4100;Objektorientert;125;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4100;Objektorientert;128;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4100;Objektorientert;132;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4100;Objektorientert;135;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
+TDT4100;Objektorientert;107;1;21;2026;v2026;Angelica,Nikolai,Oliver,Tony,Sven;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TDT4180;MMI;14;1;21;2026;v2026;Angelica,Oskar,Sander,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TDT4180;MMI;21;1;21;2026;v2026;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TDT4180;MMI;28;1;21;2026;v2026;Angelica,Sofus,Sander,Tony,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
@@ -107,7 +85,102 @@ TDT4180;MMI;49;1;21;2026;v2026;Angelica,Sofus,Tony,Don;Angelica,Nikolai,Sofus,Kr
 TDT4180;MMI;56;1;21;2026;v2026;Angelica,Sofus,Oskar,Sander,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TDT4180;MMI;63;1;21;2026;v2026;Angelica,Sofus,Oskar,Sander,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
 TDT4180;MMI;77;1;21;2026;v2026;Angelica,Sander,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4180;MMI;112;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4180;MMI;119;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4180;MMI;126;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
-TDT4180;MMI;133;1;21;2026;v2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don
+TDT4120;Algdat;233;34;48;2026;h2026;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;238;34;48;2026;h2026;Angelica,Sofus,Sander,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;240;34;48;2026;h2026;Angelica,Sofus,Oliver,Sander,Don,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;245;34;48;2026;h2026;Angelica,Nikolai,Sander,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;247;34;48;2026;h2026;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Tony,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;252;34;48;2026;h2026;Sofus,Oliver,Sander,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;254;34;48;2026;h2026;Angelica,Nikolai,Sofus,Oliver,Sander,Tony,Sven,Don,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;259;34;48;2026;h2026;Nikolai,Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;261;34;48;2026;h2026;Angelica,Sofus,Oliver,Oskar,Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;266;34;48;2026;h2026;Nikolai,Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;268;34;48;2026;h2026;Sofus,Oliver,Sander,Tony,Sven,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;273;34;48;2026;h2026;Nikolai,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;275;34;48;2026;h2026;Angelica,Sofus,Oliver,Sander,Sven;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;282;34;48;2026;h2026;Angelica,Sofus,Oliver;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;287;34;48;2026;h2026;Nikolai,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;294;34;48;2026;h2026;Nikolai,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;296;34;48;2026;h2026;Angelica,Oliver,Sander,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;301;34;48;2026;h2026;Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;303;34;48;2026;h2026;Angelica,Kristoffer,Sander,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;308;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;310;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;315;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;317;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;322;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4120;Algdat;324;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TMA4240;Statistikk;230;34;48;2026;h2026;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Tony,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;232;34;48;2026;h2026;Angelica,Nikolai,Sofus,Oliver,Oskar,Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;237;34;48;2026;h2026;Angelica,Nikolai,Sofus,Sander,Tony,Sven;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;239;34;48;2026;h2026;Angelica,Sofus,Oliver,Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;244;34;48;2026;h2026;Angelica,Nikolai,Sofus,Oliver,Sander,Tony,Sven,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;246;34;48;2026;h2026;Nikolai,Oliver,Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;251;34;48;2026;h2026;Angelica,Sofus,Oliver,Sander,Tony,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;253;34;48;2026;h2026;Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;258;34;48;2026;h2026;Nikolai,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;260;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;265;34;48;2026;h2026;Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;267;34;48;2026;h2026;Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;272;34;48;2026;h2026;Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;274;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;279;34;48;2026;h2026;Nikolai,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;281;34;48;2026;h2026;Nikolai,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;286;34;48;2026;h2026;Angelica,Nikolai,Sofus,Oliver,Sander,Tony,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;288;34;48;2026;h2026;Angelica,Nikolai,Sofus,Sander;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;293;34;48;2026;h2026;Angelica,Sofus,Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;295;34;48;2026;h2026;Angelica,Nikolai,Oliver,Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;300;34;48;2026;h2026;Angelica,Nikolai,Sofus,Oliver,Sander,Tony,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;302;34;48;2026;h2026;Angelica,Nikolai,Sander,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;307;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;309;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;314;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;316;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;321;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TMA4240;Statistikk;323;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Sana
+TDT4160;Datamaskiner;229;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;236;34;48;2026;h2026;Angelica,Sofus,Sander,Tony,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;239;34;48;2026;h2026;Angelica,Sofus,Oliver,Sander,Tony,Don,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;243;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;246;34;48;2026;h2026;Nikolai,Oliver,Oskar,Sander,Tony,Sven;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;250;34;48;2026;h2026;Oliver,Sander,Tony,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;253;34;48;2026;h2026;Angelica,Sofus,Kristoffer,Oliver,Oskar,Sander,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;257;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;260;34;48;2026;h2026;Angelica,Sofus,Oskar,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;267;34;48;2026;h2026;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;271;34;48;2026;h2026;Sofus,Sander,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;274;34;48;2026;h2026;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Sander,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;285;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;288;34;48;2026;h2026;Angelica,Kristoffer,Oliver,Oskar,Sander,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;295;34;48;2026;h2026;Angelica,Sofus,Oliver,Oskar,Sander,Don,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;302;34;48;2026;h2026;Angelica,Nikolai,Sofus,Oliver,Sander,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;306;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;309;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;313;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;316;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;320;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+TDT4160;Datamaskiner;323;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;229;34;48;2026;h2026;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;236;34;48;2026;h2026;Sofus,Tony;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;238;34;48;2026;h2026;Angelica,Nikolai,Sofus,Oliver,Oskar,Sander,Tony,Sven,Don,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;243;34;48;2026;h2026;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;245;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;250;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;257;34;48;2026;h2026;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Sven,Don,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;259;34;48;2026;h2026;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Don,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;264;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;266;34;48;2026;h2026;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;271;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;273;34;48;2026;h2026;Sofus,Oliver,Sander,Sven;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;285;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;287;34;48;2026;h2026;Angelica,Nikolai,Sofus,Kristoffer,Oskar,Sander,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;292;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;294;34;48;2026;h2026;Angelica,Nikolai,Sofus,Oliver,Sander,Don,Sana;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;299;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;301;34;48;2026;h2026;Angelica,Sofus,Kristoffer,Oskar,Sander,Sven,Don;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;306;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;308;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;313;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;315;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;320;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
+IT1901;IT Prosjektarbeid;322;34;48;2026;h2026;;Angelica,Nikolai,Sofus,Kristoffer,Oliver,Oskar,Sander,Tony,Sven,Don,Sana
